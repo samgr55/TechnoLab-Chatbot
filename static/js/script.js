@@ -20,7 +20,8 @@ function send() {
   .then(response => response.json())
   .then(data => {
     setTimeout(function() {
-        addResponseMsg(data.answer, data.image);
+        addResponseMsg(data.answer, data.image, data.model_file);
+        responsiveVoice.speak(data.answer, "Arabic Male", {volume: 1});
         running = false;
     }, 1000); 
   })
@@ -47,7 +48,7 @@ function addMsg(msg) {
     "message-box"
   ).scrollHeight;
 }
-function addResponseMsg(msg, imageUrl = null) {
+function addResponseMsg(msg, imageUrl = null, modelFile = null) {
   var messageBox = document.getElementById("message-box");
   
   var div = document.createElement("div");
@@ -68,7 +69,22 @@ function addResponseMsg(msg, imageUrl = null) {
       messageContent.appendChild(img);  
   }
 
-  div.appendChild(messageContent); 
+  function updateModelViewer(modelFile) {
+    var modelViewer = document.querySelector("model-viewer");
+    modelViewer.src = "static/models/" + modelFile;
+  }
+  
+  if (modelFile) {
+    var button = document.createElement('button');
+    button.innerText = 'Show in 3D';
+    button.addEventListener('click', function() {
+      document.getElementById('modelPopup').style.display = 'block';
+      updateModelViewer(modelFile);
+    });
+    messageContent.appendChild(button);
+  }
+
+  div.appendChild(messageContent);
   messageBox.appendChild(div); 
 
   messageBox.scrollTop = messageBox.scrollHeight;
@@ -87,10 +103,23 @@ document.getElementById("message").addEventListener("keyup", function (event) {
       document.getElementById("chatbot").classList.remove("collapsed")
       document.getElementById("chatbot_toggle").children[0].style.display = "none"
       document.getElementById("chatbot_toggle").children[1].style.display = ""
-      setTimeout(addResponseMsg,1000," مرحبا بك في النسخة التجريبية TechnoLab - Chatbot, لقد تم تدريبي على الوحدة السابعة من كتاب الأحياء فقط, كيف يمكنني أن أساعدك؟")    }
+      setTimeout(addResponseMsg,1000," مرحبا بك في النسخة التجريبية TechnoLab - Chatbot, لقد تم تدريبي على الوحدة السادسة والسابعة من كتاب الأحياء فقط, كيف يمكنني أن أساعدك؟")    }
     else {
       document.getElementById("chatbot").classList.add("collapsed")
       document.getElementById("chatbot_toggle").children[0].style.display = ""
       document.getElementById("chatbot_toggle").children[1].style.display = "none"
     }
   }
+
+
+
+var modal = document.getElementById('modelPopup');
+var span = document.getElementsByClassName('close')[0];
+span.onclick = function() {
+  modal.style.display = "none";
+}
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}

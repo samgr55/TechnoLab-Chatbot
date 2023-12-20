@@ -4,9 +4,18 @@
   <meta charset="UTF-8">
   <title>TechnoLab - Chatbot</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-
+  <meta name="viewport" content="width=device-width, initial-scale=0.85">
+  <script src="https://code.responsivevoice.org/responsivevoice.js?key=h3aQd5Xs"></script>
 </head>
 <body>
+
+  <div id="modelPopup" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <script type="module" src="{{ url_for('static', filename='js/sam.min.js') }}"></script>
+      <model-viewer id="modelViewer" alt="3D Model" ar ar-modes="webxr scene-viewer quick-look" environment-image="{{ url_for('static', filename='environments/moon_1k.hdr') }}" seamless-poster shadow-intensity="1" camera-controls style="width: 500px; height: 500px;"></model-viewer>
+    </div>
+  </div>
 <div class="title">
   <svg viewBox="0 0 640 512" title="robot">
         <path fill="currentColor" d="M32,224H64V416H32A31.96166,31.96166,0,0,1,0,384V256A31.96166,31.96166,0,0,1,32,224Zm512-48V448a64.06328,64.06328,0,0,1-64,64H160a64.06328,64.06328,0,0,1-64-64V176a79.974,79.974,0,0,1,80-80H288V32a32,32,0,0,1,64,0V96H464A79.974,79.974,0,0,1,544,176ZM264,256a40,40,0,1,0-40,40A39.997,39.997,0,0,0,264,256Zm-8,128H192v32h64Zm96,0H288v32h64ZM456,256a40,40,0,1,0-40,40A39.997,39.997,0,0,0,456,256Zm-8,128H384v32h64ZM640,256V384a31.96166,31.96166,0,0,1-32,32H576V224h32A31.96166,31.96166,0,0,1,640,256Z" />

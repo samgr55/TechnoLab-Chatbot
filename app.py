@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify, render_template, url_for
 from SamModel import predictRes
 
-app = Flask(__name__)
+app = Flask("TechnoLab-Chatbot")
 
 
 @app.route('/get-response', methods=['POST'])
