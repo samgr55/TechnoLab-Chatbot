@@ -1,5 +1,5 @@
 # TechnoLab-Chatbot
- TechnoLab Chatbot (DEMO) for e-learning, it's been trained with +2500 tokens, and right now it only supports Unit 6 and 7 of Biology E-book Class
+ TechnoLab Chatbot (DEMO) for e-learning, it's trained with +2500 tokens, and right now it only supports Unit 6 and 7 of Biology E-book Class
 
 ## Installation 
 ```
